@@ -59,8 +59,8 @@ const upload = multer({
 });
 
 const app = express();
-app.use(express.static(__dirname));
-const PORT = 5000;
+app.use(express.static(__dirname + "/.."));
+const PORT = process.env.PORT || 5000;
 
 console.log("Trying to connect to MongoDB...");
 mongoose.connect("mongodb+srv://sumitlodhi8650_db_user:Sumit123@shayari-cluster.x6irjf5.mongodb.net/shayariDB?retryWrites=true&w=majority")
