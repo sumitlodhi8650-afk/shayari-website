@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+ <title>LostInWords</title>
+ <link rel="icon" type="image/png" href="favicon.png">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div id="intro" onclick="enterSite()">
+
+<div class="stars"></div>
+<div class="hearts"></div>
+
+<div class="glass">
+
+<h1 id="title"></h1>
+
+<p class="subtitle">
+ना तो मोहब्बत ❣ है ना ही इश्क ❣  
+फिर भी तलाश है उस सुकून की
+</p>
+
+<span class="enter">Tap Anywhere</span>
+
+</div>
+
+</div>
+<div id="mainSite" style="display:none;">
+
+  <header class="header">
+
+<div class="welcome">
+
+<div class="scrollText">
+Welcome to <span class="hindi">ज़ोया कश्यप</span> World
+</div>
+
+</div>
+
+
+
+</header>
+<section id="trending">
+
+<div class="section-header">
+<h2>🔥 Trending Shayari</h2>
+</div>
+
+<div id="trending-container"></div>
+
+</section>
+
+  <div class="menu" onclick="toggleMenu()">
+⋮
+</div>
+
+<div class="dropdown" id="dropdownMenu">
+
+<p onclick="scrollToTrending()">🔥 Trending</p>
+
+<p onclick="scrollToCategories()">📂 Categories</p>
+
+<p onclick="scrollToFooter()">🌐 Connect With Us</p>
+
+</div>
+<div id="menuOverlay"></div>
+
+</div>
+</header>
+
+
+
+<section id="categories">
+
+<div class="section-header">
+<h2>📂 Categories</h2>
+</div>
+
+<div class="categories-grid">
+
+<a href="category.html?name=love" class="category-card love">
+❤️ Love
+</a>
+
+<a href="category.html?name=sad" class="category-card sad">
+💔 Sad
+</a>
+
+<a href="category.html?name=friendship" class="category-card friendship">
+🤝 Friendship
+</a>
+
+<a href="category.html?name=motivation" class="category-card motivation">
+🔥 Motivation
+</a>
+
+<a href="category.html?name=life" class="category-card life">
+🌿 Life
+</a>
+
+</div>
+
+</section>
+
+  <main id="shayari-container"></main>
+  </div>
+
+  <footer id="footer" class="main-footer">
+
+<div class="footer-quote">
+
+<p class="shayari-line">
+ना तो मोहब्बत ❣ है  
+ना ही इश्क ❣  
+फिर भी तलाश है उस सुकून की ❤
+</p>
+
+<p class="author">
+— ज़ोया कश्यप ✍
+</p>
+
+</div>
+
+
+<div class="footer-social">
+
+<a href="mailto:Zoyakashyapo9o8@gmail.com" target="_blank">
+<i class="fas fa-envelope"></i>
+</a>
+
+<a href="https://www.instagram.com/___shayara?igsh=MWZva3V1amNnYnN2bA==" target="_blank">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="
+https://t.me/lostinwords06" target="_blank">
+<i class="fab fa-telegram"></i>
+</a>
+
+<a href="https://pratilipi.app.link/en/referral?referral_code=5N4IPE5" target="_blank">
+<i class="fas fa-book"></i>
+</a>
+
+<a href="https://whatsapp.com/channel/0029VbBapEfJuyAIKvl9nm3n" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+</div>
+
+<p class="footer-copy">
+© 2026 ज़ोया कश्यप ❤️
+</p>
+
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="admin.css">
+    <button class="back-btn" onclick="goBack()">← Dashboard</button>
+<title>Manage Shayari</title>
+</head>
+
+<body>
+
+    <script>
+
+if(!localStorage.getItem("token")){
+
+alert("Login Required");
+
+window.location.href = "admin.html";
+
+}
+
+</script>
+
+<h1 id="pageTitle"></h1>
+<p id="categoryBadge" class="category-badge"></p>
+
+<div class="upload-card">
+
+<textarea id="shayariText" placeholder="Write Shayari"></textarea>
+
+<input type="file" id="file" accept="image/*,video/mp4">
+
+<br><br>
+
+<button onclick="addShayari()">Add Shayari</button>
+
+</div>
+
+<h3>All Shayari</h3>
+
+<div id="shayariList"></div>
+
+<script>
+
+    
+
+    const category = localStorage.getItem("category");
+    
+
+document.getElementById("pageTitle").innerText =
+"Manage " + category.charAt(0).toUpperCase() + category.slice(1) + " Shayari";
+
+document.getElementById("categoryBadge").innerText =
+"Category : " + category;
+
+function goBack(){
+window.location.href = "dashboard.html";
+}
+
+function addShayari(){
+
+const text = document.getElementById("shayariText").value;
+const file = document.getElementById("file").files[0];
+
+const formData = new FormData();
+formData.append("text", text);
+formData.append("file", file);
+formData.append("category",category);
+
+fetch("http://localhost:5000/api/shayari",{
+method:"POST",
+headers:{
+"x-access-token":localStorage.getItem("token")
+},
+body:formData
+})
+.then(res=>res.json())
+.then(data=>{
+
+alert("Shayari Added");
+
+loadShayari();
+
+});
+
+}
+
+
+
+
+function loadShayari(){
+
+fetch(`http://localhost:5000/api/shayari?category=${category}`)
+.then(res => res.json())
+.then(data => {
+
+if(!Array.isArray(data)){
+console.error("API returned error:", data);
+return;
+}
+
+const list = document.getElementById("shayariList");
+
+list.innerHTML = "";
+
+data.forEach(item => {
+    console.log(item);
+
+const div = document.createElement("div");
+
+div.innerHTML = `
+<p>${item.text}</p>
+
+${item.image && item.image.endsWith(".mp4") ? `
+<video width="250" controls>
+<source src="http://localhost:5000/upload/videos/${item.image}" type="video/mp4">
+</video>
+` : item.image ? `
+<img src="http://localhost:5000/upload/images/${item.image}" width="200">
+` : ""}
+
+<button onclick="editShayari('${item._id}', '${item.text}')">Edit</button>
+<button onclick="deleteShayari('${item._id}')">Delete</button>
+<button onclick="likeShayari('${item._id}')">
+❤️ Like (${item.likes})
+</button>
+<hr>
+`;
+
+list.appendChild(div);
+
+});
+
+});
+
+}
+loadShayari();
+
+function deleteShayari(id){
+
+fetch(`http://127.0.0.1:5000/api/shayari/${id}`,{
+
+method:"DELETE",
+
+headers:{
+"x-access-token":localStorage.getItem("token")
+}
+
+})
+.then(res=>res.json())
+.then(()=>loadShayari());
+
+}
+
+
+
+function likeShayari(id){
+
+fetch(`http://127.0.0.1:5000/api/shayari/like/${id}`,{
+method:"POST"
+})
+.then(res=>res.json())
+.then(data=>{
+
+loadShayari();
+
+});
+
+}
+
+function editShayari(id,oldText){
+
+const newText = prompt("Edit Shayari:",oldText);
+
+if(!newText) return;
+
+fetch(`http://127.0.0.1:5000/api/shayari/${id}`,{
+
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json",
+"x-access-token":localStorage.getItem("token")
+},
+
+body:JSON.stringify({text:newText})
+
+})
+.then(res=>res.json())
+.then(()=>loadShayari());
+
+}
+
+
+
+
+</script>
+
+</body>
+
+</html>

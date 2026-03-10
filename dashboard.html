@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Raksha Kashyap Dashboard</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<button class="logout-btn" onclick="logout()">Logout</button>
+
+<script>
+
+function logout(){
+
+localStorage.removeItem("token");
+
+window.location.href="admin.html";
+
+}
+
+</script>
+
+    <script>
+
+if(!localStorage.getItem("token")){
+
+alert("Please login first");
+
+window.location.href = "admin.html";
+
+}
+
+</script>
+
+<div class="top-bar">
+
+<button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<h1 class="dashboard-title">Raksha Kashyap Dashboard</h1>
+<p class="welcome-text">
+Welcome back, Zoya Kashyap ✨  
+Manage your Shayari categories
+</p>
+
+<div class="category-box">
+
+<h3 class="category-title">Select Category</h3>
+
+<button onclick="openCategory('love')">❤️ Love</button>
+
+<button onclick="openCategory('sad')">😢 Sad</button>
+
+<button onclick="openCategory('friendship')">🤝 Friendship</button>
+
+<button onclick="openCategory('life')">🌿 Life</button>
+
+<button onclick="openCategory('motivation')">🚀 Motivation</button>
+
+</div>
+
+<script>
+
+function openCategory(category){
+
+localStorage.setItem("category", category);
+
+window.location.href = "manage-shayari.html";
+
+}
+
+</script>
+
+</body>
+</html>

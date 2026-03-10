@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Category Shayari</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="category-page">
+    
+
+<div class="category-header">
+<h1 id="categoryTitle"></h1>
+<p id="categorySub"></p>
+</div>
+
+
+<div id="shayari-container"></div>
+<div id="popup" class="popup"></div>
+<div id="commentPanel" class="comment-panel">
+
+<div class="comment-header">
+<span>Comments</span>
+<button onclick="closeComments()">✖</button>
+</div>
+
+<div id="commentList" class="comment-list"></div>
+
+<div class="comment-input">
+
+<input id="commentUser" placeholder="Your name">
+
+<input id="commentInput" placeholder="Write comment">
+
+<button onclick="sendComment()">Send</button>
+
+</div>
+
+</div>
+
+
+
+<script src="category.js"></script>
+
+
+
+</body>
+
+</html>
