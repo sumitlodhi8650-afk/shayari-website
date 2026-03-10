@@ -59,6 +59,7 @@ const upload = multer({
 });
 
 const app = express();
+app.use(express.static(__dirname));
 const PORT = 5000;
 
 console.log("Trying to connect to MongoDB...");
