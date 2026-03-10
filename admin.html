@@ -170,7 +170,7 @@ function login() {
 const email = document.getElementById("email").value;
 const password = document.getElementById("password").value;
 
-fetch("http://127.0.0.1:5000/api/admin/login", {
+fetch("https://shayari-website.onrender.com/api/admin/login", {
 method: "POST",
 headers: {
 "Content-Type": "application/json"
@@ -196,7 +196,7 @@ window.location.href="dashboard.html";
 
 }
 function loadAdminShayari() {
-  fetch("http://127.0.0.1:5000/api/shayari")
+  fetch("https://shayari-website.onrender.com/api/shayari")
     .then(res => res.json())
     .then(data => {
       const list = document.getElementById("adminList");
@@ -218,7 +218,7 @@ function loadAdminShayari() {
 function addShayari() {
   const text = document.getElementById("shayariText").value;
 
-  fetch("http://127.0.0.1:5000/api/shayari", {
+  fetch("https://shayari-website.onrender.com/api/shayari", {
     method: "POST",
     headers: { "Content-Type": "application/json","x-access-token": localStorage.getItem("token") },
     body: JSON.stringify({ text })
@@ -231,7 +231,7 @@ function addShayari() {
 }
 
 function deleteShayari(id) {
-  fetch(`http://127.0.0.1:5000/api/shayari/${id}`, {
+  fetch(`https://shayari-website.onrender.com/api/shayari/${id}`, {
     method: "DELETE",
     headers: {
       "x-access-token": localStorage.getItem("token")
@@ -245,7 +245,7 @@ function editShayari(id, oldText) {
   const newText = prompt("Edit Shayari:", oldText);
   if (!newText) return;
 
-  fetch(`http://127.0.0.1:5000/api/shayari/${id}`, {
+  fetch(`https://shayari-website.onrender.com/api/shayari/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" , "x-access-token": localStorage.getItem("token")},
     body: JSON.stringify({ text: newText })

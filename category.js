@@ -64,7 +64,7 @@ const emoji = emojiMap[categoryName] || "✨";
 
 const container = document.getElementById("shayari-container");
 
-fetch("http://localhost:5000/api/shayari?category=" + categoryName)
+fetch("https://shayari-website.onrender.com/api/shayari?category=" + categoryName)
 .then(res => res.json())
 .then(data => {
 
@@ -86,10 +86,10 @@ card.innerHTML = `
 
 ${item.image && item.image.endsWith(".mp4") ? `
 <video class="shayariVideo" autoplay muted loop playsinline width="100%" onclick="toggleMute(this)">
-<source src="http://localhost:5000/upload/videos/${item.image}" type="video/mp4">
+<source src="https://shayari-website.onrender.com/upload/videos/${item.image}" type="video/mp4">
 </video>
 ` : item.image ? `
-<img src="http://localhost:5000/upload/images/${item.image}" width="100%">
+<img src="https://shayari-website.onrender.com/upload/images/${item.image}" width="100%">
 ` : `
 <div class="text-only-card">
 ${item.text}
@@ -144,7 +144,7 @@ const userId=localStorage.getItem("userId") || Date.now()
 
 localStorage.setItem("userId",userId)
 
-fetch(`http://127.0.0.1:5000/api/shayari/like/${id}`,{
+fetch(`https://shayari-website.onrender.com/api/shayari/like/${id}`,{
 
 method:"POST",
 
@@ -209,7 +209,7 @@ function sendComment(){
 const user=document.getElementById("commentUser").value;
 const text=document.getElementById("commentInput").value;
 
-fetch(`http://127.0.0.1:5000/api/shayari/comment/${currentShayari}`,{
+fetch(`https://shayari-website.onrender.com/api/shayari/comment/${currentShayari}`,{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -308,9 +308,9 @@ function downloadStatus(file){
 let url = "";
 
 if(file.endsWith(".mp4")){
-url = "http://localhost:5000/upload/videos/" + file;
+url = "https://shayari-website.onrender.com/upload/videos/" + file;
 }else{
-url = "http://localhost:5000/upload/images/" + file;
+url = "https://shayari-website.onrender.com/upload/images/" + file;
 }
 
 const a = document.createElement("a");
@@ -359,7 +359,7 @@ box.style.display = "none";
 
 function loadComments(id){
 
-fetch(`http://127.0.0.1:5000/api/shayari/${id}`)
+fetch(`https://shayari-website.onrender.com/api/shayari/${id}`)
 .then(res=>res.json())
 .then(data=>{
 
@@ -389,7 +389,7 @@ document.getElementById("commentPanel").classList.remove("show");
 
 function loadComments(id){
 
-fetch(`http://127.0.0.1:5000/api/shayari/${id}`)
+fetch(`https://shayari-website.onrender.com/api/shayari/${id}`)
 .then(res=>res.json())
 .then(data=>{
 
@@ -449,7 +449,7 @@ return days + " days ago";
 
 function addView(id){
 
-fetch(`http://127.0.0.1:5000/api/shayari/view/${id}`,{
+fetch(`https://shayari-website.onrender.com/api/shayari/view/${id}`,{
 method:"POST"
 })
 

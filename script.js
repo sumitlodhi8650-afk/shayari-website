@@ -17,7 +17,7 @@ function renderLeaderboard(data) {
 const container = document.getElementById("shayari-container");
 
 // Backend se data fetch karo
-fetch("http://127.0.0.1:5000/api/shayari")
+fetch("https://shayari-website.onrender.com/api/shayari")
   .then(res => res.json())
   .then(data => {
     renderLeaderboard(data);
@@ -42,7 +42,7 @@ if (localStorage.getItem(likedKey)) {
     alert("Tum already like kar chuke ho ❤️");
     return;
 }
-        fetch(`http://127.0.0.1:5000/api/shayari/${item._id}/like`, {
+        fetch(`https://shayari-website.onrender.com/api/shayari/${item._id}/like`, {
           method: "POST"
         })
         .then(res => res.json())
@@ -52,7 +52,7 @@ if (localStorage.getItem(likedKey)) {
           likeCount.innerText = updated.likes;
           localStorage.setItem(likedKey, "true");
 likeBtn.disabled = true;
-fetch("http://127.0.0.1:5000/api/shayari")
+fetch("https://shayari-website.onrender.com/api/shayari")
   .then(res => res.json())
   .then(data => {
     renderLeaderboard(data);
@@ -132,7 +132,7 @@ overlay.style.display="block"
 
 async function loadTrending(){
 
-const res = await fetch("http://localhost:5000/trending");
+const res = await fetch("https://shayari-website.onrender.com/trending");
 
 const data = await res.json();
 
@@ -290,7 +290,7 @@ if(loading) return;
 
 loading = true;
 
-fetch(`http://localhost:5000/trending?skip=${skip}&limit=${limit}`)
+fetch(`https://shayari-website.onrender.com/trending?skip=${skip}&limit=${limit}`)
 .then(res => res.json())
 .then(data => {
 
@@ -311,12 +311,12 @@ ${item.image ? (
 item.image.endsWith(".mp4") ?
 
 `<video class="shayariVideo" autoplay muted loop playsinline>
-<source src="http://localhost:5000/upload/videos/${item.image}" type="video/mp4">
+<source src="https://shayari-website.onrender.com/upload/videos/${item.image}" type="video/mp4">
 </video>`
 
 :
 
-`<img src="http://localhost:5000/upload/images/${item.image}" class="shayari-img">`
+`<img src="https://shayari-website.onrender.com/upload/images/${item.image}" class="shayari-img">`
 
 )
 
@@ -373,7 +373,7 @@ loadTrending();
 
 async function loadTrending(){
 
-const res = await fetch("http://localhost:5000/trending?limit=5")
+const res = await fetch("https://shayari-website.onrender.com/trending?limit=5")
 const data = await res.json()
 
 const container = document.getElementById("trending-container")
@@ -396,7 +396,7 @@ if(shayari.video || (shayari.image && shayari.image.endsWith(".mp4"))){
 
 media = `
 <video class="shayariVideo" muted loop autoplay playsinline>
-<source src="http://localhost:5000/upload/videos/${shayari.video}" type="video/mp4">
+<source src="https://shayari-website.onrender.com/upload/videos/${shayari.video}" type="video/mp4">
 </video>
 `
 
@@ -404,7 +404,7 @@ media = `
 
 else if(shayari.image){
 
-media=`<img src="http://localhost:5000/upload/images/${shayari.image}">`
+media=`<img src="https://shayari-website.onrender.com/upload/images/${shayari.image}">`
 
 }
 

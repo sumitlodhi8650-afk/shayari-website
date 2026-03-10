@@ -3,11 +3,12 @@
 
 <head>
     <link rel="stylesheet" href="admin.css">
-    <button class="back-btn" onclick="goBack()">← Dashboard</button>
+    
 <title>Manage Shayari</title>
 </head>
 
 <body>
+     <button class="back-btn" onclick="goBack()">← Dashboard</button>
 
     <script>
 
@@ -67,7 +68,7 @@ formData.append("text", text);
 formData.append("file", file);
 formData.append("category",category);
 
-fetch("http://localhost:5000/api/shayari",{
+fetch("https://shayari-website.onrender.com/api/shayari",{
 method:"POST",
 headers:{
 "x-access-token":localStorage.getItem("token")
@@ -90,7 +91,7 @@ loadShayari();
 
 function loadShayari(){
 
-fetch(`http://localhost:5000/api/shayari?category=${category}`)
+fetch(`https://shayari-website.onrender.com/api/shayari?category=${category}`)
 .then(res => res.json())
 .then(data => {
 
@@ -113,10 +114,10 @@ div.innerHTML = `
 
 ${item.image && item.image.endsWith(".mp4") ? `
 <video width="250" controls>
-<source src="http://localhost:5000/upload/videos/${item.image}" type="video/mp4">
+<source src="https://shayari-website.onrender.com/upload/videos/${item.image}" type="video/mp4">
 </video>
 ` : item.image ? `
-<img src="http://localhost:5000/upload/images/${item.image}" width="200">
+<img src="https://shayari-website.onrender.com/upload/images/${item.image}" width="200">
 ` : ""}
 
 <button onclick="editShayari('${item._id}', '${item.text}')">Edit</button>
@@ -138,7 +139,7 @@ loadShayari();
 
 function deleteShayari(id){
 
-fetch(`http://127.0.0.1:5000/api/shayari/${id}`,{
+fetch(`https://shayari-website.onrender.com/api/shayari/${id}`,{
 
 method:"DELETE",
 
@@ -156,7 +157,7 @@ headers:{
 
 function likeShayari(id){
 
-fetch(`http://127.0.0.1:5000/api/shayari/like/${id}`,{
+fetch(`https://shayari-website.onrender.com/api/shayari/like/${id}`,{
 method:"POST"
 })
 .then(res=>res.json())
@@ -174,7 +175,7 @@ const newText = prompt("Edit Shayari:",oldText);
 
 if(!newText) return;
 
-fetch(`http://127.0.0.1:5000/api/shayari/${id}`,{
+fetch(`https://shayari-website.onrender.com/api/shayari/${id}`,{
 
 method:"PUT",
 
