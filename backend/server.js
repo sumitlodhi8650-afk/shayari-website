@@ -282,7 +282,7 @@ app.put("/api/shayari/:id", verifyToken, async (req, res) => {
 
 // Root test
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+ res.sendFile(__dirname + "/../index.html");
 });
 
 app.post("/api/admin/login", async (req, res) => {
